@@ -41,7 +41,7 @@ const Home = () => {
     <>
       <View style={{ flex: 1, position: "relative" }}>
         <View style={styles.search}>
-          <Input placeholder="Search city..." style={{ elevation: 5 }} />
+          <Input style={{ elevation: 5 }} placeholder="Search city" />
           <Button text="Search" style={{ elevation: 5 }} />
         </View>
         <View>
