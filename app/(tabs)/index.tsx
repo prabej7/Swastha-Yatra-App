@@ -1,31 +1,53 @@
-import { StyleSheet } from 'react-native';
-
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+import Button, { SecButon } from "@/components/Button";
+import Text from "@/components/Text";
+import View from "@/components/View";
+import { Redirect, router, Stack, Tabs, useRouter } from "expo-router";
+import { StyleSheet, Image } from "react-native";
 
 export default function TabOneScreen() {
+  const route = useRouter();
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
-    </View>
+    <>
+      <Redirect href="/(user)" />
+      <Stack.Screen options={{ headerShown: false }} />
+      <Tabs.Screen options={{ tabBarStyle: { display: "none" } }} />
+      <View style={styles.container}>
+        <Image
+          source={require("../../assets/images/sapiens.png")}
+          style={styles.image}
+        />
+        <Text style={styles.title}>Swastha Yatra</Text>
+        <Text style={styles.subTitle}>“We appreciate your time.”</Text>
+        <View style={styles.action}>
+          <Button text="Register" onPress={() => router.push("/register")} />
+          <SecButon text="Login" onPress={() => router.push("/login")} />
+        </View>
+      </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 36,
+    fontFamily: "Bold",
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  subTitle: {
+    fontFamily: "Regular",
+  },
+  image: {
+    height: 200,
+    width: 200,
+  },
+  action: {
+    display: "flex",
+    flexDirection: "row",
+    gap: 12,
+    marginTop: 24,
   },
 });
