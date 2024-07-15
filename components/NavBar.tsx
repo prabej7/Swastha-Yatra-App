@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: "Regular",
-    fontSize: 18,
+    fontSize: 12,
   },
   iconContainer: {
     display: "flex",

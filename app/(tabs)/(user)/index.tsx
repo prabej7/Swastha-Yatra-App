@@ -8,6 +8,8 @@ import { LocationProps } from "@/constants/Types";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import { View as V } from "react-native";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { light } from "@/constants/ColorTheme";
 const Home = () => {
   const [location, setLocation] = useState<LocationProps>({
     lat: 27.0449,
@@ -42,10 +44,18 @@ const Home = () => {
       <View style={{ flex: 1, position: "relative" }}>
         <V style={styles.search}>
           <Input
-            style={{ elevation: 5, width: 226 }}
+            style={{ elevation: 5, width: "auto", minWidth: 236 }}
             placeholder="Search city"
           />
-          <Button text="Search" style={{ elevation: 5 }} />
+          <Button
+            icon={
+              <MaterialCommunityIcons
+                name="magnify"
+                style={{ color: light.bg, fontSize: 24 }}
+              />
+            }
+            style={{ elevation: 5 }}
+          />
         </V>
         <View>
           <MapView

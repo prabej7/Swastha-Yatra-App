@@ -12,10 +12,27 @@ interface ButtonProps {
   text?: string;
   onPress?: () => void;
   textStyle?: TextStyle | TextStyle[];
+  icon?: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ style, text, onPress, textStyle }) => {
+const Button: React.FC<ButtonProps> = ({
+  style,
+  text,
+  onPress,
+  textStyle,
+  icon,
+}) => {
   const theme = useTheme();
+
+  if (icon) {
+    return (
+      <>
+        <Pressable style={[style, styles.button]} onPress={onPress}>
+          {icon}
+        </Pressable>
+      </>
+    );
+  }
   return (
     <>
       <Pressable style={[style, styles.button]} onPress={onPress}>

@@ -7,6 +7,7 @@ import Button from "@/components/Button";
 import { View as V } from "react-native";
 import { light } from "@/constants/ColorTheme";
 import { Link } from "expo-router";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 const Find = () => {
   return (
     <>
@@ -16,7 +17,15 @@ const Find = () => {
             style={{ elevation: 5, width: 226 }}
             placeholder="Search city"
           />
-          <Button text="Search" style={{ elevation: 5 }} />
+          <Button
+            icon={
+              <MaterialCommunityIcons
+                name="magnify"
+                style={{ color: light.bg, fontSize: 24 }}
+              />
+            }
+            style={{ elevation: 5 }}
+          />
         </View>
         <View style={styles.hospitals}>
           <Link href="/(hospital)/2" asChild>

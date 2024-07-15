@@ -5,6 +5,8 @@ import Input from "@/components/Input";
 import { StyleSheet } from "react-native";
 import Button from "@/components/Button";
 import Card from "@/components/Cards";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { light } from "@/constants/ColorTheme";
 const Appointments = () => {
   return (
     <>
@@ -14,7 +16,15 @@ const Appointments = () => {
             style={{ elevation: 5, width: 226 }}
             placeholder="Search appointents"
           />
-          <Button text="Search" style={{ elevation: 5 }} />
+          <Button
+            icon={
+              <MaterialCommunityIcons
+                name="magnify"
+                style={{ color: light.bg, fontSize: 24 }}
+              />
+            }
+            style={{ elevation: 5 }}
+          />
         </View>
         <View style={styles.appointments}>
           <Card
