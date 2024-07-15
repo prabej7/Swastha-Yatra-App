@@ -1,14 +1,13 @@
 import useTheme from "@/hooks/useTheme";
 import { TextInput, TextInputProps } from "react-native";
-
 import { StyleSheet } from "react-native";
 
-const Input: React.FC<TextInputProps> = ({ ...props }) => {
+const Input: React.FC<TextInputProps> = ({ style, ...props }) => {
   const theme = useTheme();
   return (
     <TextInput
       {...props}
-      style={[props.style, { backgroundColor: theme.secBg }, styles.input]}
+      style={[styles.input, { backgroundColor: theme.secBg }, style]}
     />
   );
 };
