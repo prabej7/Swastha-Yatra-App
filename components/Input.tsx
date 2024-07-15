@@ -18,7 +18,7 @@ export default Input;
 const styles = StyleSheet.create({
   input: {
     padding: 12,
-    width: 250,
+    minWidth: 200,
     textAlign: "center",
     borderRadius: 7,
     fontFamily: "Regular",

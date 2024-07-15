@@ -12,7 +12,10 @@ const Find = () => {
     <>
       <View style={{ flex: 1, padding: 30, paddingLeft: 24, paddingRight: 24 }}>
         <View style={styles.search}>
-          <Input style={{ elevation: 5 }} placeholder="Search city" />
+          <Input
+            style={{ elevation: 5, width: 226 }}
+            placeholder="Search city"
+          />
           <Button text="Search" style={{ elevation: 5 }} />
         </View>
         <View style={styles.hospitals}>
@@ -51,7 +54,7 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 1,
     height: 45,
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     paddingLeft: 24,
     paddingRight: 24,
   },

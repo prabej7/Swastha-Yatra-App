@@ -38,6 +38,7 @@ const Register: React.FC = () => {
           <Input
             placeholder="Full name"
             onChangeText={(text) => handleChange(text, "fullName")}
+            style={{ width: 250 }}
           />
           <Input
             placeholder="Email"

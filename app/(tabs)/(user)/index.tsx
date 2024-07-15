@@ -7,7 +7,7 @@ import * as Location from "expo-location";
 import { LocationProps } from "@/constants/Types";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
-
+import { View as V } from "react-native";
 const Home = () => {
   const [location, setLocation] = useState<LocationProps>({
     lat: 27.0449,
@@ -40,10 +40,13 @@ const Home = () => {
   return (
     <>
       <View style={{ flex: 1, position: "relative" }}>
-        <View style={styles.search}>
-          <Input style={{ elevation: 5 }} placeholder="Search city" />
+        <V style={styles.search}>
+          <Input
+            style={{ elevation: 5, width: 226 }}
+            placeholder="Search city"
+          />
           <Button text="Search" style={{ elevation: 5 }} />
-        </View>
+        </V>
         <View>
           <MapView
             region={{
@@ -81,6 +84,8 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 1,
     height: 45,
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
+    paddingLeft: 24,
+    paddingRight: 24,
   },
 });

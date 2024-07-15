@@ -8,7 +8,6 @@ export default function TabOneScreen() {
   const route = useRouter();
   return (
     <>
-      <Redirect href="/(user)" />
       <Stack.Screen options={{ headerShown: false }} />
       <Tabs.Screen options={{ tabBarStyle: { display: "none" } }} />
       <View style={styles.container}>

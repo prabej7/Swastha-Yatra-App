@@ -37,13 +37,14 @@ const Login: React.FC = () => {
           <Input
             placeholder="Email"
             onChangeText={(text) => handleChange(text, "email")}
+            style={{ width: 250 }}
           />
           <Input
             placeholder="Password"
             secureTextEntry
             onChangeText={(text) => handleChange(text, "password")}
           />
-          <Button text="Register" onPress={handleSubmit} />
+          <Button text="Login" onPress={handleSubmit} />
         </View>
         <Text style={styles.info}>
           Don't have an account ?{" "}
