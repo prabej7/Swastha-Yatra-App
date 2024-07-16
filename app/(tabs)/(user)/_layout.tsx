@@ -11,6 +11,11 @@ const UserScreenStack = () => {
         <Tabs.Screen name="account" options={{ headerShown: false }} />
         <Stack.Screen name="(hospital)/[id]" options={{ headerShown: false }} />
         <Stack.Screen name="[chatId]" options={{ headerShown: false }} />
+        <Tabs.Screen name="doctor/[id]" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="appointmentForm/[id]"
+          options={{ headerShown: false }}
+        />
       </Tabs>
     </>
   );

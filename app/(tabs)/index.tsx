@@ -2,10 +2,12 @@ import Button, { SecButon } from "@/components/Button";
 import Text from "@/components/Text";
 import View from "@/components/View";
 import { Redirect, router, Stack, Tabs, useRouter } from "expo-router";
+import { useEffect } from "react";
 import { StyleSheet, Image } from "react-native";
 
 export default function TabOneScreen() {
   const route = useRouter();
+
   return (
     <>
       <Stack.Screen options={{ headerShown: false }} />
