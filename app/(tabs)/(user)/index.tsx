@@ -1,43 +1,75 @@
 import NavBar from "@/components/NavBar";
-import { StyleSheet } from "react-native";
+import { Alert, StyleSheet } from "react-native";
 import { useState, useEffect } from "react";
 import View from "@/components/View";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
-import { LocationProps } from "@/constants/Types";
+import { ErrorProps, LocationProps } from "@/constants/Types";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import { View as V } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { light } from "@/constants/ColorTheme";
+import axios from "axios";
 const Home = () => {
+  const [place, setPlace] = useState<string>("");
   const [location, setLocation] = useState<LocationProps>({
     lat: 27.0449,
     lon: 84.8672,
   });
-  const [region, setRegion] = useState({
-    latitude: location.lat,
-    longitude: location.lon,
-    latitudeDelta: 0.01,
-    longitudeDelta: 0.01,
+
+  const [mapLocation, setMapLocation] = useState<LocationProps>({
+    lat: location.lat,
+    lon: location.lon,
   });
-  const [errorMsg, setErrorMsg] = useState<string>("");
+
+  const [errorMsg, setErrorMsg] = useState<ErrorProps>({
+    isError: false,
+    msg: "",
+  });
 
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
-        setErrorMsg("Permission to access location was denied");
+        setErrorMsg({
+          isError: true,
+          msg: "Permission to access location was denied",
+        });
+        Alert.alert("Error", "Permission to access location was denied");
         return;
       }
 
       let location = await Location.getCurrentPositionAsync({});
       setLocation({
         lat: location.coords.latitude,
-        lon: location.coords.longitude, // Fixed this line
+        lon: location.coords.longitude,
+      });
+      setMapLocation({
+        lat: location.coords.latitude,
+        lon: location.coords.longitude,
       });
     })();
   }, []);
+
+  const handleQuery = async () => {
+    const apiKey = process.env.EXPO_PUBLIC_LOCATION_API;
+    try {
+      const response = await axios.get(
+        `http://api.openweathermap.org/geo/1.0/direct?q=${place}&limit=5&appid=${apiKey}`
+      );
+      setMapLocation({
+        lat: response.data[0].lat,
+        lon: response.data[0].lon,
+      });
+    } catch (error) {
+      setErrorMsg({
+        isError: true,
+        msg: "Invalid city name!",
+      });
+      Alert.alert("Error", "Invalid city name!");
+    }
+  };
 
   return (
     <>
@@ -46,6 +78,7 @@ const Home = () => {
           <Input
             style={{ elevation: 5, width: "auto", minWidth: 236 }}
             placeholder="Search city"
+            onChangeText={setPlace}
           />
           <Button
             icon={
@@ -55,15 +88,16 @@ const Home = () => {
               />
             }
             style={{ elevation: 5 }}
+            onPress={handleQuery}
           />
         </V>
         <View>
           <MapView
             region={{
-              latitude: location.lat,
-              longitude: location.lon,
-              latitudeDelta: 0.005,
-              longitudeDelta: 0.005,
+              latitude: mapLocation.lat,
+              longitude: mapLocation.lon,
+              latitudeDelta: 0.01,
+              longitudeDelta: 0.015,
             }}
             zoomEnabled
             scrollEnabled
